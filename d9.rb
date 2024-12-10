@@ -1,5 +1,5 @@
-File.read('in/09').chomp
 # DATA.read.chomp
+File.read('in/09').chomp
   .each_char
   .map(&:to_i)
   .each_slice(2)
@@ -20,31 +20,45 @@ File.read('in/09').chomp
       checksum
     end
 
-    def defrag
-      replace slice_when { _1 != _2 }.to_a.instance_eval {
-        ptr = count - 1
+    class Span
+      attr_reader :id, :size
+      def initialize(id, size)
+        @id = id
+        @size = size
+      end
+      def free? = @id.nil?
+      def erase!; @id = nil end
+      def to_a = Array.new(@size, @id)
+      def to_s = to_a.fill(free? ? '.' : @id).join
+    end
 
+    def defrag
+      replace slice_when { _1 != _2 }.map { Span.new(_1[0], _1.size) }.instance_eval {
+        ptr = count - 1
         loop do
-          cur_size = self[ptr].size
-          
+          cur_span = self[ptr]
+          cur_span_size = cur_span.size
+
           # look for a span of free space to the left of ptr
           free_ptr = (0...ptr).find do |i|
-            self[i][0].nil? && self[i].size >= cur_size
+            self[i].free? && self[i].size >= cur_span_size
           end
           if free_ptr
-            free_size = self[free_ptr].size
-            self[free_ptr..free_ptr] = self[ptr].dup, [nil] * (free_size - cur_size)
-            self[ptr+1].fill(nil)
+            self[free_ptr..free_ptr] = [
+              cur_span.dup,
+              Span.new(nil, self[free_ptr].size - cur_span_size)
+            ]
+            cur_span.erase!
           else
             ptr -= 1
           end
-          while ptr > 0 and self[ptr][0].nil?
+          while ptr > 0 and self[ptr].free?
             ptr -= 1
           end
           break if ptr <= 0
         end
 
-        flatten
+        flat_map &:to_a
       }
       checksum
     end
