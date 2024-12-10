@@ -24,25 +24,21 @@ File.read('in/09').chomp
       replace slice_when { _1 != _2 }.to_a.instance_eval {
         ptr = count - 1
 
-        get_id = ->(i) { self[i].first }
-        is_free = ->(i) { get_id[i].nil? }
-        get_size = ->(i) { self[i].size }
-
         loop do
-          cur_size = get_size[ptr]
+          cur_size = self[ptr].size
           
           # look for a span of free space to the left of ptr
           free_ptr = (0...ptr).find do |i|
-            is_free[i] && get_size[i] >= cur_size
+            self[i][0].nil? && self[i].size >= cur_size
           end
           if free_ptr
-            free_size = get_size[free_ptr]
+            free_size = self[free_ptr].size
             self[free_ptr..free_ptr] = self[ptr].dup, [nil] * (free_size - cur_size)
             self[ptr+1].fill(nil)
           else
             ptr -= 1
           end
-          while ptr > 0 and is_free[ptr]
+          while ptr > 0 and self[ptr][0].nil?
             ptr -= 1
           end
           break if ptr <= 0
