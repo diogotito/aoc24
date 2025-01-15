@@ -1,7 +1,7 @@
 from functools import lru_cache
 from math import floor, log10
 
-with open("in/11") as input:
+with open("../in/11") as input:
     input_stones = [int(engraving) for engraving in input.readline().split()]
 
 

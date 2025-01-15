@@ -1,4 +1,4 @@
-garden = File.open("input/12") do |f|
+garden = File.open("../in/12") do |f|
   lines = f.readlines(chomp: true).map(&:chars)
   SIZE = lines.length
 

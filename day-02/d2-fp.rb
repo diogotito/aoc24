@@ -1,4 +1,4 @@
-reports = IO.foreach('input/02').map { |line| line.split.map &:to_i }
+reports = IO.foreach('../in/02').map { |line| line.split.map &:to_i }
 
 # Part 1
 to_deltas = ->(report) { report.each_cons(2).map { _2 - _1 } }

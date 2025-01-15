@@ -2,7 +2,7 @@ require 'stringio'
 
 garden = begin
           lines = DATA.readlines(chomp: true).map(&:chars)
-          lines = File.readlines("input/12", chomp: true).map(&:chars)
+          lines = File.readlines("../in/12", chomp: true).map(&:chars)
           # lines = lines.drop(20).take(80).map { _1.drop(80).take(20) }
 
           SIZE = lines.length

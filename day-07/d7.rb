@@ -17,7 +17,7 @@ class Equation
   attr_reader :lhs
 end
 
-parsed_input = File.foreach('input/07')
+parsed_input = File.foreach('../in/07')
   .map { |line| line.split(':') }
   .map { Equation[lhs: _1.to_i, operands: _2.split.map(&:to_i)] }
 

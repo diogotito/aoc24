@@ -1,5 +1,5 @@
 puts \
-  IO.foreach('input/04', chomp: true)
+  IO.foreach('../in/04', chomp: true)
   .map(&:chars)
   .then { |soup|
     (1..soup.size-2).flat_map { |r| (1..soup.size-2).map { |c| [r, c] } }

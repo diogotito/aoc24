@@ -1,4 +1,4 @@
-input = File.readlines("input/02", chomp: true)
+input = File.readlines("../in/02", chomp: true)
 
 ex = [
 "7 6 4 2 1",

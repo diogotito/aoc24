@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-with open("input/05") as input:
+with open("../in/05") as input:
     rules = defaultdict(set)
     for line in iter(input.readline, "\n"):
         lpage, rpage = map(int, line.split("|"))

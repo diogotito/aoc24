@@ -1,4 +1,4 @@
-input_chunks = IO.foreach("input/05", chomp: true)
+input_chunks = IO.foreach("../in/05", chomp: true)
   .chunk { _1.empty? && :_separator }.lazy.map { _2 }
 
 $precedences = Hash.new { |hash, key| hash[key] = Set.new }

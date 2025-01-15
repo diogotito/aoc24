@@ -1,4 +1,4 @@
-soup = IO.foreach('input/04', chomp: true).map(&:chars)
+soup = IO.foreach('../in/04', chomp: true).map(&:chars)
 SIZE = soup.size
 positions = (1..SIZE-2).flat_map { |r| (1..SIZE-2).map { |c| [r, c] } }
 

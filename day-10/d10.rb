@@ -2,7 +2,7 @@ require 'matrix'
 
 DIRS = [ Vector[0, 1], Vector[0, -1], Vector[1, 0], Vector[-1, 0] ]
 
-INPUT = open 'input/10' # DATA
+INPUT = open '../in/10' # DATA
 map = Matrix.rows(INPUT.readlines(chomp: true).map { _1.chars.map(&:to_i) })
 
 def map.count_trails_from(pos, dir, reachable_9s)

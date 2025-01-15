@@ -1,4 +1,4 @@
-input_stones = File.readlines('in/11').first.split.map &:to_i
+input_stones = File.readlines('../in/11').first.split.map &:to_i
 
 def blink(stone)
   return [1] if stone.zero?

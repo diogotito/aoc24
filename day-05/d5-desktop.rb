@@ -1,4 +1,4 @@
-File.foreach("input/05", chomp: true)
+File.foreach("../in/05", chomp: true)
   .chunk { _1.empty? && :_separator }
   .map { _2 } => precedences, updates
 

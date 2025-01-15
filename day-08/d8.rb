@@ -1,6 +1,6 @@
 require 'matrix'
 
-input = open('input/08')
+input = open('../in/08')
 input = DATA if false # reads what's below __END__
 
 map = Matrix.rows input.readlines(chomp: true).map &:chars

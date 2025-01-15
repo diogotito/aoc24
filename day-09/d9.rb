@@ -1,5 +1,5 @@
 # DATA.read.chomp
-File.read('in/09').chomp
+File.read('../in/09').chomp
   .each_char
   .map(&:to_i)
   .each_slice(2)

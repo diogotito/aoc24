@@ -20,7 +20,7 @@ class Guy < Vector
   def in_bounds?    = (0...@map.column_size).include?(component 0) && (0...@map.column_count).include?(component 1)
 end
 
-map = Matrix[*IO.foreach("input/06", chomp: true).map(&:chars)]
+map = Matrix[*IO.foreach("../in/06", chomp: true).map(&:chars)]
 guy = Guy.__send__(:new, map)
 
 
