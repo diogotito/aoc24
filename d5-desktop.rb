@@ -6,4 +6,3 @@ precedences.map! { _1.split(?|).map &:to_i }
 updates.collect! { _1.split(?,).map &:to_i }
 
 class Array def mid = at size/2 end
-
