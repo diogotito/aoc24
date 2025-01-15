@@ -18,6 +18,13 @@ class Array
   def mid = at size/2
 end
 
-puts updates
-  .keep_if(&:update_is_correct?)
-  .sum(&:mid)
+sorted, unsorted = updates.partition(&:update_is_correct?)
+
+part1 = sorted.sum(&:mid)
+puts "Part One: #{part1}"
+
+part2 = unsorted.sum do |update|
+  puts "sorting #{update}"
+  update.permutation.find(&:update_is_correct?).mid
+end
+puts "Part Two: #{part2}"

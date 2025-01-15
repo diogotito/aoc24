@@ -14,8 +14,8 @@ def map.count_trails_from(pos, dir, reachable_9s)
   DIRS.sum { |dir| count_trails_from(fwd, dir, reachable_9s) }
 end
 
-all_scores, all_ratings = map.each_with_index.sum(Vector[0, 0]) do |h, r, c|
-  next Vector[0, 0] unless h == 0
+all_scores, all_ratings = map.each_with_index.sum(Vector.zero 2) do |height, r, c|
+  next Vector.zero 2 unless height.zero?
   trailhead = Vector[r, c]
   reachable_9s = Set.new
   rating = DIRS.sum { |dir| map.count_trails_from(trailhead, dir, reachable_9s) }
